@@ -1,0 +1,18 @@
+{
+     "Joystick": [
+          195,
+          ""
+     ],
+     "Torque Sensor": [
+          40.800000000000004,
+          "Nm"
+     ],
+     "Motor Control": [
+          0.0,
+          "W"
+     ],
+     "BPI_Battery": [
+          100,
+          "%"
+     ]
+}
