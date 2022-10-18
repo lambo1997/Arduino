@@ -3,8 +3,7 @@ from datetime import datetime
 import time
 
 dt = datetime.now()
-ts = datetime.timestamp(dt)
-print("start timestamp : ", ts)
+print("start timestamp : ", dt)
 
 data = {}
 with open('data.txt') as f:
@@ -24,9 +23,8 @@ for i in range(1, nn):
         unit = "%"
         res = int(values[bit_pos:bit_pos + length], 16) * factor
         if res >= _min and res <= _max:
-            print("BPI_Battery = ", res, unit)
             dt_604 = datetime.now()
-            ts_604 = datetime.timestamp(dt_604)
+            print(dt_604, "BPI_Battery = ", res, unit)
             data["BPI_Battery"] = res, unit
     if lines[i].split()[1] == "100":
         line =  lines[i]
@@ -39,11 +37,10 @@ for i in range(1, nn):
         _min = -327.68
         _max = 327.68
         unit = "Nm"
-        res = int(values[bit_pos:bit_pos + length], 16) * factor
+        res = int(values[bit_pos:bit_pos + length], 16) * factor + offset
         if res >= _min and res <= _max:
-            print("Torque Sensor = ", res, unit)
             dt_100 = datetime.now()
-            ts_100 = datetime.timestamp(dt_100)
+            print(dt_100, "Torque Sensor = ", res, unit)
             data["Torque Sensor"] = res, unit
     if lines[i].split()[1] == "101":
         line =  lines[i]
@@ -58,9 +55,8 @@ for i in range(1, nn):
         unit = ""
         res = int(values[bit_pos:bit_pos + length], 16) * factor
         if res >= _min and res <= _max:
-            print("Joystick = ", res, unit)
             dt_101 = datetime.now()
-            ts_101 = datetime.timestamp(dt_101)
+            print(dt_101, "Joystick = ", res, unit)
             data["Joystick"] = res, unit
     if lines[i].split()[1] == "614":
         line =  lines[i]
@@ -75,9 +71,8 @@ for i in range(1, nn):
         unit = "%"
         res = int(values[bit_pos:bit_pos + length], 16) * factor
         if res >= _min and res <= _max:
-            print("RPI_Battery = ", res, unit)
             dt_614 = datetime.now()
-            ts_614 = datetime.timestamp(dt_614)
+            print(dt_614, "RPI_Battery = ", res, unit)
             data["RPI_Battery"] = res, unit
     if lines[i].split()[1] == "510":
         line =  lines[i]
@@ -92,9 +87,8 @@ for i in range(1, nn):
         unit = "W"
         res = int(values[bit_pos:bit_pos + length], 16) * factor
         if res >= _min and res <= _max:
-            print("Motor Control = ", res, unit)
             dt_510 = datetime.now()
-            ts_510 = datetime.timestamp(dt_510)
+            print(dt_510, "Motor Control = ", res, unit)
             data["Motor Control"] = res, unit
 
 json_object = json.dumps(data, indent = 5)
